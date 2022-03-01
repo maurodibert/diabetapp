@@ -1,3 +1,6 @@
 {
-    "nutrientsAdderCalculateButton": "Calculá"
+    "nutrientsAdderCalculateButton": "Calculá",
+    "nutrientsActiveInsulineText": "Insulina activa",
+    "nutrientsCurrentSugarText": "Azúcar en sangre",
+    "nutrientsYourMealText": "Tu comida"
 }

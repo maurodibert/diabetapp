@@ -1,3 +1,4 @@
+import 'package:diabetapp/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:diabetapp/nutrients/bloc/nutrients_bloc.dart';
@@ -16,11 +17,13 @@ class CurrentSugar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(
-          'Current sugar',
+          l10n!.nutrientsCurrentSugarText,
           style: Theme.of(context).textTheme.headline6,
         ),
         const SizedBox(width: 24),

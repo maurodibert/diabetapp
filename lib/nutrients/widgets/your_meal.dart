@@ -1,3 +1,4 @@
+import 'package:diabetapp/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:diabetapp/nutrients/bloc/nutrients_bloc.dart';
 import 'package:provider/src/provider.dart';
@@ -18,11 +19,13 @@ class YourMeal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Your meal',
+          l10n!.nutrientsYourMealText,
           style: Theme.of(context).textTheme.headline6,
         ),
         Row(

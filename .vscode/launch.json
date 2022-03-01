@@ -2,15 +2,13 @@
     "version": "0.2.0",
     "configurations": [
       {
-        "name": "Launch DEV",
+        "name": "dev",
         "request": "launch",
         "type": "dart",
-        "program": "lib/main_deve.dart",
+        "program": "lib/main.dart",
         "args": [
-          "--flavor",
-          "dev",
           "--target",
-          "lib/main_dev.dart",
+          "lib/main.dart",
           "--dart-define",
           "EDAMAM_APP_ID=b1f30bba",
           "--dart-define",
@@ -18,21 +16,6 @@
           "--dart-define",
           "EDAMAM_BASE_URL=https://api.edamam.com/api",
         ]
-      },
-      {
-        "name": "Launch STAG",
-        "request": "launch",
-        "type": "dart",
-        "program": "lib/main_stag.dart",
-        "args": ["--flavor", "stag", "--target", "lib/main_stag.dart"]
-      },
-      {
-        "name": "Launch PROD",
-        "request": "launch",
-        "type": "dart",
-        "program": "lib/main_prod.dart",
-        "args": ["--flavor", "prod", "--target", "lib/main_prod.dart"]
       }
     ]
   }
-  

@@ -2,5 +2,17 @@
     "nutrientsAdderCalculateButton": "Calculate",
     "@nutrientsAdderCalculateButton": {
         "description": "Text that submits the calculation of insuline and sugar"
+    },
+    "nutrientsActiveInsulineText": "Active Insuline",
+    "@nutrientsActiveInsulineText": {
+        "description": "Title for the active insuline text field"
+    },
+    "nutrientsCurrentSugarText": "Current Sugar",
+    "@nutrientsCurrentSugarText": {
+        "description": "Title for the current sugar text field"
+    },
+    "nutrientsYourMealText": "Your Meal",
+    "@nutrientsYourMealText": {
+        "description": "Title for the your meal text field"
     }
 }
