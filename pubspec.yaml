@@ -1,0 +1,40 @@
+name: diabetapp
+description: An application for helping in diabetic
+version: 1.0.0+1
+publish_to: none
+
+environment:
+  sdk: ">=2.15.0 <3.0.0"
+
+dependencies:
+  bloc: ^8.0.1
+  dio: ^4.0.4
+  edamam_nutrition_api:
+    path: packages/edamam_nutrition_api
+  equatable: ^2.0.3
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^8.0.0
+  flutter_localizations:
+    sdk: flutter
+  flutter_services_binding: ^0.1.0
+  http_service:
+    path: packages/http_service
+  ingredients_api:
+    path: packages/ingredients_api
+  ingredients_repository:
+    path: packages/ingredients_repository
+  intl: ^0.17.0
+
+dev_dependencies:
+  bloc_test: ^9.0.2
+  flutter_test:
+    sdk: flutter
+  import_sorter: ^4.6.0
+  mocktail: ^0.2.0
+  mockingjay: ^0.2.0
+  very_good_analysis: ^2.4.0
+
+flutter:
+  uses-material-design: true
+  generate: true

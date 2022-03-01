@@ -1,0 +1,6 @@
+{
+    "nutrientsAdderCalculateButton": "Calculate",
+    "@nutrientsAdderCalculateButton": {
+        "description": "Text that submits the calculation of insuline and sugar"
+    }
+}

@@ -1,0 +1,19 @@
+name: http_service
+description: A service for managing requests
+version: 1.0.0+1
+publish_to: none
+
+environment:
+  sdk: ">=2.15.0 <3.0.0"
+
+dependencies:
+  dio: ^4.0.4
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  http_mock_adapter: ^0.3.2
+  mocktail: ^0.2.0
+  very_good_analysis: ^2.4.0
