@@ -24,7 +24,7 @@ class TotalNutrients extends Equatable {
   });
 
   /// [Nutrient]s map
-  @JsonKey(name: 'CHOCDF')
+  @JsonKey(name: 'SUGAR')
   final Nutrient nutrient;
 
   /// Returns a copy of this [TotalNutrients] with the given values updated.

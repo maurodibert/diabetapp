@@ -16,25 +16,7 @@ class Result extends StatelessWidget {
           child: CircularProgressIndicator(),
         );
       case NutrientsStatus.calculationSuccess:
-        final _result = context
-                    .watch<NutrientsBloc>()
-                    .state
-                    .result!
-                    .userShould ==
-                UserShould.doNothing
-            ? 'You are in great shape!'
-            : context.watch<NutrientsBloc>().state.result!.userShould ==
-                    UserShould.addFood
-                ? 'You have to eat ${context.watch<NutrientsBloc>().state.result!.amount!.toStringAsFixed(1)} grams of carbs'
-                : 'You have to add ${context.watch<NutrientsBloc>().state.result!.amount!.toStringAsFixed(1)} of insuline';
-
-        return Center(
-          child: Text(
-            _result,
-            textAlign: TextAlign.center,
-            style: _textTheme.headline5,
-          ),
-        );
+        return ResultView();
       case NutrientsStatus.failure:
         return Center(
           child: Text(
@@ -46,5 +28,40 @@ class Result extends StatelessWidget {
       default:
         return SizedBox.shrink();
     }
+  }
+}
+
+class ResultView extends StatelessWidget {
+  const ResultView({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final _textTheme = Theme.of(context).textTheme;
+    final _result = context.watch<NutrientsBloc>().state.result!.userShould ==
+            UserShould.doNothing
+        ? 'You are in great shape!'
+        : context.watch<NutrientsBloc>().state.result!.userShould ==
+                UserShould.addFood
+            ? 'You have to eat ${context.watch<NutrientsBloc>().state.result!.amount!.toStringAsFixed(1)} grams of carbs'
+            : 'You have to add ${context.watch<NutrientsBloc>().state.result!.amount!.toStringAsFixed(1)} of insuline';
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 12.0),
+      child: Center(
+        child: RichText(
+            text: TextSpan(
+                text:
+                    'Your meal has ${context.watch<NutrientsBloc>().state.recipeDetail!.totalNutrients.nutrient.quantity.toStringAsFixed(1)} grams of sugar',
+                style: _textTheme.headline5,
+                children: <TextSpan>[
+              TextSpan(
+                text: '.-$_result',
+                style: _textTheme.bodyText1,
+              ),
+            ])),
+      ),
+    );
   }
 }
