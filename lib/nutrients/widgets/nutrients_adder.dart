@@ -33,6 +33,7 @@ class _NutrientsAdderState extends State<NutrientsAdder> {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
     final bloc = context.read<NutrientsBloc>();
     final l10n = context.l10n;
 
@@ -43,45 +44,57 @@ class _NutrientsAdderState extends State<NutrientsAdder> {
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Column(
-              children: [
-                ActiveInsuline(
-                    insulineController: insulineController,
-                    formKey: formKey,
-                    bloc: bloc),
-                CurrentSugar(
-                    sugarController: sugarController,
-                    formKey: formKey,
-                    bloc: bloc),
-                const SizedBox(height: 54),
-                YourMeal(
-                    bloc: bloc,
-                    adderController: adderController,
-                    formKey: formKey,
-                    width: width),
-                const SizedBox(height: 20),
-                Result(),
-              ],
+            Padding(
+              padding: const EdgeInsets.fromLTRB(24, 24, 24, 0),
+              child: SizedBox(
+                height: height * 0.73,
+                child: ListView(
+                  children: [
+                    ActiveInsuline(
+                        insulineController: insulineController,
+                        formKey: formKey,
+                        bloc: bloc),
+                    CurrentSugar(
+                        sugarController: sugarController,
+                        formKey: formKey,
+                        bloc: bloc),
+                    const SizedBox(height: 54),
+                    YourMeal(
+                        bloc: bloc,
+                        adderController: adderController,
+                        formKey: formKey,
+                        width: width),
+                    const SizedBox(height: 20),
+                    Result(),
+                  ],
+                ),
+              ),
             ),
-            Align(
-              alignment: Alignment.center,
-              child: OutlinedButton(
-                  style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(
-                          Colors.lightBlueAccent)),
-                  onPressed: () {
-                    if (formKey.currentState!.validate()) {
-                      bloc.add(NutrientsGetResultEvent());
-                    }
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(l10n!.nutrientsAdderCalculateButton,
-                        style: Theme.of(context)
-                            .textTheme
-                            .button!
-                            .copyWith(color: Colors.white)),
-                  )),
+            Container(
+              color: Colors.amber,
+              child: Align(
+                alignment: Alignment.center,
+                child: Padding(
+                  padding: const EdgeInsets.all(24.0),
+                  child: OutlinedButton(
+                      style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                              Colors.lightBlueAccent)),
+                      onPressed: () {
+                        if (formKey.currentState!.validate()) {
+                          bloc.add(NutrientsGetResultEvent());
+                        }
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(l10n!.nutrientsAdderCalculateButton,
+                            style: Theme.of(context)
+                                .textTheme
+                                .button!
+                                .copyWith(color: Colors.white)),
+                      )),
+                ),
+              ),
             )
           ]),
     );

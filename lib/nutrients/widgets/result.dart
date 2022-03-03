@@ -38,8 +38,9 @@ class ResultView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _textTheme = Theme.of(context).textTheme;
-    final _result = context.watch<NutrientsBloc>().state.result!.userShould ==
+    final hasRecipe = context.watch<NutrientsBloc>().state.recipeDetail != null;
+    final textTheme = Theme.of(context).textTheme;
+    final result = context.watch<NutrientsBloc>().state.result!.userShould ==
             UserShould.doNothing
         ? 'You are in great shape!'
         : context.watch<NutrientsBloc>().state.result!.userShould ==
@@ -52,13 +53,14 @@ class ResultView extends StatelessWidget {
       child: Center(
         child: RichText(
             text: TextSpan(
-                text:
-                    'Your meal has ${context.watch<NutrientsBloc>().state.recipeDetail!.totalNutrients.nutrient.quantity.toStringAsFixed(1)} grams of sugar',
-                style: _textTheme.headline5,
+                text: hasRecipe
+                    ? 'Your meal has ${context.watch<NutrientsBloc>().state.recipeDetail!.totalNutrients.nutrient.quantity.toStringAsFixed(1)} grams of sugar | '
+                    : '',
+                style: textTheme.headline5,
                 children: <TextSpan>[
               TextSpan(
-                text: '.-$_result',
-                style: _textTheme.bodyText1,
+                text: '$result',
+                style: hasRecipe ? textTheme.bodyText1 : textTheme.headline5,
               ),
             ])),
       ),

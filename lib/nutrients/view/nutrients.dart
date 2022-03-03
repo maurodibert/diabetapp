@@ -23,11 +23,6 @@ class NutrientsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(children: [
-      Padding(
-        padding: const EdgeInsets.all(24.0),
-        child: NutrientsAdder(),
-      )
-    ]);
+    return NutrientsAdder();
   }
 }
