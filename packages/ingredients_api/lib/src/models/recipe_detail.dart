@@ -25,7 +25,7 @@ class RecipeDetail extends Equatable {
   /// {@macro recipe_detail}
   RecipeDetail({
     String? id,
-    required this.totalNutrients,
+    this.totalNutrients,
   })  : assert(
           id == null || id.isNotEmpty,
           'id can not be null and should be empty',
@@ -38,7 +38,7 @@ class RecipeDetail extends Equatable {
   final String id;
 
   /// List of nutrients
-  final TotalNutrients totalNutrients;
+  final TotalNutrients? totalNutrients;
 
   /// Returns a copy of this RecipeDetail with the given values updated.
   ///
@@ -52,6 +52,9 @@ class RecipeDetail extends Equatable {
       totalNutrients: totalNutrients ?? this.totalNutrients,
     );
   }
+
+  /// Returns an empty RecipeDetail for logic purposes
+  static RecipeDetail empty() => RecipeDetail(totalNutrients: null);
 
   /// Deserializes the given [JsonMap] into a RecipeDetail
   static RecipeDetail fromJson(JsonMap json) => _$RecipeDetailFromJson(json);
