@@ -22,8 +22,6 @@ void main() {
             ingredientsRepository: ingredientsRepository);
         expect(find.byType(NutrientsView), findsOneWidget);
       });
-
-      //TODO(mau): solve this issue
       testWidgets('subscribes to details from repository on initialization',
           (tester) async {
         await tester.pumpApp(

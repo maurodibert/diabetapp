@@ -19,11 +19,14 @@ class HomeView extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           'DiabetApp',
-          style: Theme.of(context).textTheme.headline4,
+          style: Theme.of(context)
+              .textTheme
+              .headline4!
+              .copyWith(color: Colors.white),
         ),
         centerTitle: true,
       ),
-      body: NutrientsPage(),
+      body: SingleChildScrollView(child: NutrientsPage()),
     );
   }
 }

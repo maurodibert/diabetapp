@@ -31,8 +31,8 @@ class NutrientsBloc extends Bloc<NutrientsEvent, NutrientsState> {
         final result = NutrientsHelpers.calculateResult(
             objective: state.objective.toDouble(),
             sugar: state.sugar.toDouble() +
-                double.parse(
-                    recipe.totalNutrients.nutrient.quantity.toStringAsFixed(1)),
+                double.parse(recipe.totalNutrients!.nutrient.quantity
+                    .toStringAsFixed(1)),
             insuline: state.insuline.toDouble(),
             fsi: state.fsi.toDouble());
 
@@ -52,8 +52,6 @@ class NutrientsBloc extends Bloc<NutrientsEvent, NutrientsState> {
     Emitter<NutrientsState> emit,
   ) async {
     emit(state.copyWith(status: NutrientsStatus.loading));
-    // TODO(Mau): check if next calculation is correct
-    // TODO(Mau): add possibility to custom fsi and objective
 
     if (state.ingredients == null || state.ingredients!.isEmpty) {
       final result = NutrientsHelpers.calculateResult(
@@ -64,10 +62,14 @@ class NutrientsBloc extends Bloc<NutrientsEvent, NutrientsState> {
       emit(state.copyWith(
         status: NutrientsStatus.calculationSuccess,
         result: result,
+        recipeDetail: RecipeDetail.empty(),
+        ingredients: <String>[],
       ));
+      event.scrollingTop();
     } else {
       try {
         await _ingredientsRepository.getDetails(state.ingredients!);
+        event.scrollingBottom();
       } catch (e) {
         e as DioError;
         emit(state.copyWith(
@@ -83,15 +85,22 @@ class NutrientsBloc extends Bloc<NutrientsEvent, NutrientsState> {
     Emitter<NutrientsState> emit,
   ) {
     final ingredients = state.ingredients?.toList() ?? [];
-    ingredients.add(event.ingredient);
-    emit(state.copyWith(ingredients: ingredients));
+    if (event.ingredient.isNotEmpty) {
+      ingredients.add(event.ingredient);
+      emit(state.copyWith(ingredients: ingredients));
+    }
   }
 
   void _onCleanIngredients(
     NutrientsCleanIngredientsEvent event,
     Emitter<NutrientsState> emit,
   ) {
-    emit(state.copyWith(ingredients: []));
+    emit(state.copyWith(
+      ingredients: [],
+      recipeDetail: null,
+      status: NutrientsStatus.initial,
+    ));
+    event.scrollingTop();
   }
 
   void _onRemoveIngredient(

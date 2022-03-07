@@ -10,12 +10,18 @@ class YourMeal extends StatelessWidget {
     required this.adderController,
     required this.formKey,
     required this.width,
+    required this.dismissKeyboard,
+    required this.scrollTop,
+    required this.scrollBottom,
   }) : super(key: key);
 
   final NutrientsBloc bloc;
   final TextEditingController adderController;
   final GlobalKey<FormState> formKey;
   final double width;
+  final void Function() dismissKeyboard;
+  final void Function() scrollTop;
+  final void Function() scrollBottom;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +39,6 @@ class YourMeal extends StatelessWidget {
           children: [
             Expanded(
               child: TextFormField(
-                autofocus: true,
                 validator: (value) {
                   if (bloc.state.ingredients != null &&
                       bloc.state.ingredients!.contains(value)) {
@@ -53,16 +58,22 @@ class YourMeal extends StatelessWidget {
               onPressed: () {
                 if (formKey.currentState!.validate()) {
                   bloc.add(NutrientsSetIngredientsEvent(
-                      ingredient: adderController.text.trim()));
+                    ingredient: adderController.text.trim(),
+                    scrollingBottom: scrollBottom,
+                  ));
                   adderController.clear();
+                  dismissKeyboard();
                 }
               },
               icon: Icon(Icons.add),
             ),
             IconButton(
               onPressed: () {
-                bloc.add(NutrientsCleanIngredientsEvent());
+                bloc.add(NutrientsCleanIngredientsEvent(
+                  scrollingTop: scrollTop,
+                ));
                 adderController.clear();
+                dismissKeyboard();
               },
               icon: Icon(Icons.delete),
             ),

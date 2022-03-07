@@ -11,18 +11,32 @@ class NutrientsSubscriptionRequested extends NutrientsEvent {
 }
 
 class NutrientsGetResultEvent extends NutrientsEvent {
-  const NutrientsGetResultEvent();
+  const NutrientsGetResultEvent({
+    required this.scrollingBottom,
+    required this.scrollingTop,
+  });
+  final void Function() scrollingBottom;
+  final void Function() scrollingTop;
+  @override
+  List<Object> get props => [scrollingBottom, scrollingTop];
 }
 
 class NutrientsSetIngredientsEvent extends NutrientsEvent {
-  const NutrientsSetIngredientsEvent({required this.ingredient});
+  const NutrientsSetIngredientsEvent({
+    required this.ingredient,
+    required this.scrollingBottom,
+  });
   final String ingredient;
+  final void Function() scrollingBottom;
   @override
-  List<Object> get props => [ingredient];
+  List<Object> get props => [ingredient, scrollingBottom];
 }
 
 class NutrientsCleanIngredientsEvent extends NutrientsEvent {
-  const NutrientsCleanIngredientsEvent();
+  const NutrientsCleanIngredientsEvent({required this.scrollingTop});
+  final void Function() scrollingTop;
+  @override
+  List<Object> get props => [scrollingTop];
 }
 
 class NutrientsRemoveIngredientEvent extends NutrientsEvent {

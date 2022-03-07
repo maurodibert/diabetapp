@@ -20,12 +20,14 @@ class _NutrientsAdderState extends State<NutrientsAdder> {
   final adderController = TextEditingController();
   final insulineController = TextEditingController();
   final sugarController = TextEditingController();
+  final scrollController = ScrollController();
 
   @override
   void dispose() {
     adderController.dispose();
     insulineController.dispose();
     sugarController.dispose();
+    scrollController.dispose();
 
     super.dispose();
   }
@@ -35,68 +37,97 @@ class _NutrientsAdderState extends State<NutrientsAdder> {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     final bloc = context.read<NutrientsBloc>();
-    final l10n = context.l10n;
 
     return Form(
       key: formKey,
       child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          mainAxisSize: MainAxisSize.max,
+          mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(24, 24, 24, 0),
-              child: SizedBox(
-                height: height * 0.73,
-                child: ListView(
-                  children: [
-                    ActiveInsuline(
-                        insulineController: insulineController,
-                        formKey: formKey,
-                        bloc: bloc),
-                    CurrentSugar(
-                        sugarController: sugarController,
-                        formKey: formKey,
-                        bloc: bloc),
-                    const SizedBox(height: 54),
-                    YourMeal(
-                        bloc: bloc,
-                        adderController: adderController,
-                        formKey: formKey,
-                        width: width),
-                    const SizedBox(height: 20),
-                    Result(),
-                  ],
-                ),
+            SizedBox(
+              height: height * 0.725,
+              child: ListView(
+                controller: scrollController,
+                padding: EdgeInsets.all(24),
+                children: [
+                  ActiveInsuline(
+                      insulineController: insulineController,
+                      formKey: formKey,
+                      bloc: bloc),
+                  CurrentSugar(
+                      sugarController: sugarController,
+                      formKey: formKey,
+                      bloc: bloc),
+                  const SizedBox(height: 54),
+                  YourMeal(
+                    bloc: bloc,
+                    adderController: adderController,
+                    formKey: formKey,
+                    width: width,
+                    dismissKeyboard: dismissKeyboard,
+                    scrollTop: scrollTop,
+                    scrollBottom: scrollBottom,
+                  ),
+                  const SizedBox(height: 20),
+                  Result(),
+                ],
               ),
             ),
             Container(
-              color: Colors.amber,
-              child: Align(
-                alignment: Alignment.center,
-                child: Padding(
-                  padding: const EdgeInsets.all(24.0),
-                  child: OutlinedButton(
-                      style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(
-                              Colors.lightBlueAccent)),
+              color: Colors.pink,
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(12),
+                    child: IconButton(
+                        color: Colors.white,
+                        icon: Icon(Icons.close),
+                        iconSize: 32,
+                        onPressed: () {
+                          bloc.add(NutrientsCleanIngredientsEvent(
+                              scrollingTop: scrollTop));
+                          cleanControllers();
+                        }),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: IconButton(
+                      iconSize: 32,
+                      icon: Icon(
+                        Icons.check,
+                      ),
+                      color: Colors.white,
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
-                          bloc.add(NutrientsGetResultEvent());
+                          bloc.add(NutrientsGetResultEvent(
+                            scrollingBottom: scrollBottom,
+                            scrollingTop: scrollTop,
+                          ));
                         }
                       },
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(l10n!.nutrientsAdderCalculateButton,
-                            style: Theme.of(context)
-                                .textTheme
-                                .button!
-                                .copyWith(color: Colors.white)),
-                      )),
-                ),
+                    ),
+                  ),
+                ],
               ),
             )
           ]),
     );
+  }
+
+  void dismissKeyboard() => FocusManager.instance.primaryFocus?.unfocus();
+  void scrollBottom() =>
+      scrollController.animateTo(scrollController.position.maxScrollExtent + 50,
+          duration: Duration(milliseconds: 1000), curve: Curves.fastOutSlowIn);
+  void scrollTop() =>
+      scrollController.animateTo(scrollController.position.minScrollExtent,
+          duration: Duration(milliseconds: 1000), curve: Curves.fastOutSlowIn);
+  void cleanControllers() {
+    adderController.clear();
+    insulineController.clear();
+    sugarController.clear();
+    scrollTop();
   }
 }
