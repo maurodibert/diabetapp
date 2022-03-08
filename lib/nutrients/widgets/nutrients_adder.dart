@@ -4,9 +4,9 @@ import 'package:diabetapp/nutrients/bloc/nutrients_bloc.dart';
 import 'package:diabetapp/nutrients/widgets/result.dart';
 import 'package:diabetapp/nutrients/widgets/your_meal.dart';
 
+import 'action_buttons.dart';
 import 'active_insuline.dart';
 import 'current_sugar.dart';
-import 'package:diabetapp/l10n/l10n.dart';
 
 class NutrientsAdder extends StatefulWidget {
   const NutrientsAdder({Key? key}) : super(key: key);
@@ -37,83 +37,54 @@ class _NutrientsAdderState extends State<NutrientsAdder> {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     final bloc = context.read<NutrientsBloc>();
+    final iconSize = 32.0;
+    final appBarHeight = (Scaffold.of(context).appBarMaxHeight)!.toDouble();
 
     return Form(
       key: formKey,
-      child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: height * 0.725,
-              child: ListView(
-                controller: scrollController,
-                padding: EdgeInsets.all(24),
-                children: [
-                  ActiveInsuline(
-                      insulineController: insulineController,
-                      formKey: formKey,
-                      bloc: bloc),
-                  CurrentSugar(
-                      sugarController: sugarController,
-                      formKey: formKey,
-                      bloc: bloc),
-                  const SizedBox(height: 54),
-                  YourMeal(
-                    bloc: bloc,
-                    adderController: adderController,
+      child: SizedBox(
+        height: height - appBarHeight,
+        child: Stack(children: [
+          SizedBox(
+            height: height - appBarHeight - iconSize,
+            child: ListView(
+              controller: scrollController,
+              padding: EdgeInsets.fromLTRB(24, 12, 24, 36),
+              children: [
+                ActiveInsuline(
+                    insulineController: insulineController,
                     formKey: formKey,
-                    width: width,
-                    dismissKeyboard: dismissKeyboard,
-                    scrollTop: scrollTop,
-                    scrollBottom: scrollBottom,
-                  ),
-                  const SizedBox(height: 20),
-                  Result(),
-                ],
-              ),
+                    bloc: bloc),
+                CurrentSugar(
+                    sugarController: sugarController,
+                    formKey: formKey,
+                    bloc: bloc),
+                const SizedBox(height: 54),
+                YourMeal(
+                  bloc: bloc,
+                  adderController: adderController,
+                  formKey: formKey,
+                  width: width,
+                  dismissKeyboard: dismissKeyboard,
+                  scrollTop: scrollTop,
+                  scrollBottom: scrollBottom,
+                ),
+                const SizedBox(height: 20),
+                Result(),
+              ],
             ),
-            Container(
-              color: Colors.pink,
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(12),
-                    child: IconButton(
-                        color: Colors.white,
-                        icon: Icon(Icons.close),
-                        iconSize: 32,
-                        onPressed: () {
-                          bloc.add(NutrientsCleanIngredientsEvent(
-                              scrollingTop: scrollTop));
-                          cleanControllers();
-                        }),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: IconButton(
-                      iconSize: 32,
-                      icon: Icon(
-                        Icons.check,
-                      ),
-                      color: Colors.white,
-                      onPressed: () {
-                        if (formKey.currentState!.validate()) {
-                          bloc.add(NutrientsGetResultEvent(
-                            scrollingBottom: scrollBottom,
-                            scrollingTop: scrollTop,
-                          ));
-                        }
-                      },
-                    ),
-                  ),
-                ],
-              ),
-            )
-          ]),
+          ),
+          ActionButtons(
+            bloc: bloc,
+            cleanControllers: cleanControllers,
+            formKey: formKey,
+            iconSize: iconSize,
+            scrollBottom: scrollBottom,
+            scrollTop: scrollTop,
+            width: width,
+          ),
+        ]),
+      ),
     );
   }
 

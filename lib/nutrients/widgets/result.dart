@@ -12,9 +12,7 @@ class Result extends StatelessWidget {
     final _textTheme = Theme.of(context).textTheme;
     switch (context.watch<NutrientsBloc>().state.status) {
       case NutrientsStatus.loading:
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
+        return SizedBox.shrink();
       case NutrientsStatus.calculationSuccess:
         return ResultView();
       case NutrientsStatus.failure:
