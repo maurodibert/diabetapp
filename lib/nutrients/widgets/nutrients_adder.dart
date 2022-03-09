@@ -69,7 +69,7 @@ class _NutrientsAdderState extends State<NutrientsAdder> {
                   scrollTop: scrollTop,
                   scrollBottom: scrollBottom,
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 8),
                 Result(),
               ],
             ),
@@ -89,12 +89,13 @@ class _NutrientsAdderState extends State<NutrientsAdder> {
   }
 
   void dismissKeyboard() => FocusManager.instance.primaryFocus?.unfocus();
-  void scrollBottom() =>
-      scrollController.animateTo(scrollController.position.maxScrollExtent + 50,
-          duration: Duration(milliseconds: 1000), curve: Curves.fastOutSlowIn);
+  void scrollBottom() => scrollController.animateTo(
+      scrollController.position.maxScrollExtent + 100,
+      duration: Duration(milliseconds: 1000),
+      curve: Curves.easeInOut);
   void scrollTop() =>
       scrollController.animateTo(scrollController.position.minScrollExtent,
-          duration: Duration(milliseconds: 1000), curve: Curves.fastOutSlowIn);
+          duration: Duration(milliseconds: 1000), curve: Curves.easeInOut);
   void cleanControllers() {
     adderController.clear();
     insulineController.clear();

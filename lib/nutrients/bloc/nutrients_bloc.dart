@@ -88,6 +88,7 @@ class NutrientsBloc extends Bloc<NutrientsEvent, NutrientsState> {
     if (event.ingredient.isNotEmpty) {
       ingredients.add(event.ingredient);
       emit(state.copyWith(ingredients: ingredients));
+      event.scrollingBottom();
     }
   }
 

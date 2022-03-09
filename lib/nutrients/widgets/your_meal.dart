@@ -39,6 +39,16 @@ class YourMeal extends StatelessWidget {
           children: [
             Expanded(
               child: TextFormField(
+                onFieldSubmitted: (value) {
+                  if (formKey.currentState!.validate()) {
+                    bloc.add(NutrientsSetIngredientsEvent(
+                      ingredient: adderController.text.trim(),
+                      scrollingBottom: scrollBottom,
+                    ));
+                    adderController.clear();
+                    dismissKeyboard();
+                  }
+                },
                 validator: (value) {
                   if (bloc.state.ingredients != null &&
                       bloc.state.ingredients!.contains(value)) {
