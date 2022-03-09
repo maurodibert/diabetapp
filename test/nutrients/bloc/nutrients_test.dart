@@ -12,13 +12,7 @@ void main() {
   final ingredientsApi = MockIngredientsApi();
   final ingredientsRepository =
       IngredientsRepository(ingredientsApi: ingredientsApi);
-
-  // setUp(() {
-  //   when(() => ingredientsApi.requestIngredients(ingredients))
-  //       .thenAnswer((_) async => recipe.toJson());
-  //   when(() => ingredientsApi.getRecipeDetails())
-  //       .thenAnswer((_) => Stream.value(recipe));
-  // });
+  void mockedScrolling() {}
 
   NutrientsBloc buildBloc() =>
       NutrientsBloc(ingredientsRepository: ingredientsRepository);
@@ -177,8 +171,8 @@ void main() {
     blocTest<NutrientsBloc, NutrientsState>(
       'emits state with new ingredient if ingredients is empty',
       build: () => buildBloc(),
-      act: (bloc) =>
-          bloc.add(NutrientsSetIngredientsEvent(ingredient: '1 apple')),
+      act: (bloc) => bloc.add(NutrientsSetIngredientsEvent(
+          ingredient: '1 apple', scrollingBottom: mockedScrolling)),
       expect: () => const <NutrientsState>[
         NutrientsState(ingredients: ['1 apple'])
       ],
@@ -188,8 +182,8 @@ void main() {
       'emits state with new added ingredient',
       build: () => buildBloc(),
       seed: () => const NutrientsState(ingredients: ['1 apple']),
-      act: (bloc) =>
-          bloc.add(NutrientsSetIngredientsEvent(ingredient: '1 orange')),
+      act: (bloc) => bloc.add(NutrientsSetIngredientsEvent(
+          ingredient: '1 orange', scrollingBottom: mockedScrolling)),
       expect: () => const <NutrientsState>[
         NutrientsState(ingredients: ['1 apple', '1 orange'])
       ],
@@ -201,7 +195,8 @@ void main() {
       'emit state with an empty ingredients list',
       build: () => buildBloc(),
       seed: () => const NutrientsState(ingredients: ['1 apple']),
-      act: (bloc) => bloc.add(NutrientsCleanIngredientsEvent()),
+      act: (bloc) => bloc
+          .add(NutrientsCleanIngredientsEvent(scrollingTop: mockedScrolling)),
       expect: () => const <NutrientsState>[NutrientsState(ingredients: [])],
     );
   });

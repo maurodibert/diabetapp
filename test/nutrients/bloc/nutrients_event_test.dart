@@ -6,6 +6,7 @@ void main() {
     const ingredient = '1 apple';
     const insuline = 1;
     const sugar = 53;
+    void mockedScrolling() {}
 
     group('NutrientsSubscriptionRequested', () {
       test('supports value equality', () {
@@ -16,26 +17,42 @@ void main() {
 
     group('NutrientsGetResultEvent', () {
       test('supports value equality', () {
-        expect(NutrientsGetResultEvent(), equals(NutrientsGetResultEvent()));
+        expect(
+            NutrientsGetResultEvent(
+                scrollingBottom: mockedScrolling,
+                scrollingTop: mockedScrolling),
+            equals(NutrientsGetResultEvent(
+                scrollingBottom: mockedScrolling,
+                scrollingTop: mockedScrolling)));
       });
     });
 
     group('NutrientsSetIngredientsEvent', () {
       test('supports value equality', () {
-        expect(NutrientsSetIngredientsEvent(ingredient: ingredient),
-            equals(NutrientsSetIngredientsEvent(ingredient: ingredient)));
+        expect(
+            NutrientsSetIngredientsEvent(
+                ingredient: ingredient, scrollingBottom: mockedScrolling),
+            equals(NutrientsSetIngredientsEvent(
+                ingredient: ingredient, scrollingBottom: mockedScrolling)));
       });
 
       test('props are correct', () {
-        expect(NutrientsSetIngredientsEvent(ingredient: ingredient).props,
-            equals(NutrientsSetIngredientsEvent(ingredient: ingredient).props));
+        expect(
+            NutrientsSetIngredientsEvent(
+                    ingredient: ingredient, scrollingBottom: mockedScrolling)
+                .props,
+            equals(NutrientsSetIngredientsEvent(
+                    ingredient: ingredient, scrollingBottom: mockedScrolling)
+                .props));
       });
     });
 
     group('NutrientsCleanIngredientsEvent', () {
       test('supports value equality', () {
-        expect(NutrientsCleanIngredientsEvent(),
-            equals(NutrientsCleanIngredientsEvent()));
+        expect(
+            NutrientsCleanIngredientsEvent(scrollingTop: mockedScrolling),
+            equals(
+                NutrientsCleanIngredientsEvent(scrollingTop: mockedScrolling)));
       });
     });
 
