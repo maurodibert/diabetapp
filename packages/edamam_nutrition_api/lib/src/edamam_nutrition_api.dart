@@ -10,10 +10,18 @@ class EdamamNutritionApi extends IngredientsApi {
   /// {@macro edamam_nutrition_api}
   EdamamNutritionApi({
     required HttpService httpService,
-  }) : _httpService = httpService;
+    required String baseUrl,
+    required Map<String, dynamic> headers,
+    required Map<String, dynamic> params,
+  })  : _httpService = httpService,
+        _baseUrl = baseUrl,
+        _headers = headers,
+        _params = params;
 
   final HttpService _httpService;
-
+  final String _baseUrl;
+  final Map<String, dynamic> _headers;
+  final Map<String, dynamic> _params;
   final _detailsStreamController = PublishSubject<RecipeDetail>();
 
   /// will return a Stream of RecipeDetail
@@ -34,6 +42,9 @@ class EdamamNutritionApi extends IngredientsApi {
         endpoint: endpoint,
         method: Method.post,
         params: body,
+        baseUrl: _baseUrl,
+        headers: _headers,
+        queryParams: _params,
       );
       if (response.data != null) {
         final detail =

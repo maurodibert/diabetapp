@@ -1,0 +1,24 @@
+name: edamam_nutrition_api
+description: A Flutter implementation of MealsApi that uses Edamam Nutrition Api
+version: 1.0.0+1
+publish_to: none
+
+environment:
+  sdk: ">=2.14.0 <3.0.0"
+
+dependencies:
+  dio: ^4.0.4
+  flutter:
+    sdk: flutter
+  http_service:
+    path: ../http_service
+  rxdart: ^0.27.2
+  translation_api:
+    path: ../translation_api
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  http_mock_adapter: ^0.3.2
+  very_good_analysis: ^2.4.0

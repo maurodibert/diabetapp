@@ -54,7 +54,7 @@ class RecipeDetail extends Equatable {
   }
 
   /// Returns an empty RecipeDetail for logic purposes
-  static RecipeDetail empty() => RecipeDetail(totalNutrients: null);
+  static RecipeDetail empty() => RecipeDetail(id: '1', totalNutrients: null);
 
   /// Deserializes the given [JsonMap] into a RecipeDetail
   static RecipeDetail fromJson(JsonMap json) => _$RecipeDetailFromJson(json);

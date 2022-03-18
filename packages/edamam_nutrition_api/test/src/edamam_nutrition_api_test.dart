@@ -40,13 +40,14 @@ void main() {
 
     final httpService = HttpService(
       httpClient: dio,
-      baseUrl: edamamBaseUrl,
-      headers: Constants.edamamPostHeader,
-      params: Constants.edamamPostParams,
     );
 
-    EdamamNutritionApi createSubject() =>
-        EdamamNutritionApi(httpService: httpService);
+    EdamamNutritionApi createSubject() => EdamamNutritionApi(
+          httpService: httpService,
+          baseUrl: edamamBaseUrl,
+          headers: Constants.edamamPostHeader,
+          params: Constants.edamamPostParams,
+        );
 
     final api = createSubject();
     group('constructor', () {

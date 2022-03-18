@@ -26,35 +26,23 @@ class HttpService {
   /// {@macro http_service}
   HttpService({
     required Dio httpClient,
-    required String baseUrl,
-    required Map<String, dynamic> headers,
-    required Map<String, dynamic> params,
-  })  : _httpClient = httpClient,
-        _baseUrl = baseUrl,
-        _headers = headers,
-        _params = params {
-    init();
-  }
+  }) : _httpClient = httpClient;
 
   final Dio _httpClient;
-  final String _baseUrl;
-  final Map<String, dynamic> _headers;
-  final Map<String, dynamic> _params;
-
-  /// service initialization and configuration
-  Future<void> init() async {
-    _httpClient.options.baseUrl = _baseUrl;
-    _httpClient.options.headers = _headers;
-    _httpClient.options.queryParameters = _params;
-  }
 
   /// help in handling request methods
   Future<Response> request({
     required String endpoint,
     required Method method,
-    Map<String, dynamic>? params,
+    required String baseUrl,
+    required Map<String, dynamic> headers,
+    required Map<String, dynamic> params,
+    required Map<String, dynamic> queryParams,
   }) async {
     Response response;
+    _httpClient.options.baseUrl = baseUrl;
+    _httpClient.options.headers = headers;
+    _httpClient.options.queryParameters = queryParams;
 
     try {
       await _hasInternetConnection();
@@ -69,8 +57,10 @@ class HttpService {
       } else if (method == Method.patch) {
         response = await _httpClient.patch<dynamic>(endpoint);
       } else {
-        response =
-            await _httpClient.get<dynamic>(endpoint, queryParameters: params);
+        response = await _httpClient.get<dynamic>(
+          endpoint,
+          queryParameters: params,
+        );
       }
 
       if (response.statusCode == 200) {

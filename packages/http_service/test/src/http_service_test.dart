@@ -22,9 +22,6 @@ void main() {
     HttpService createSubject() {
       return HttpService(
         httpClient: dio,
-        baseUrl: edamamBaseUrl,
-        headers: Constants.edamamPostHeader,
-        params: Constants.edamamPostParams,
       );
     }
 
@@ -50,6 +47,9 @@ void main() {
           endpoint: edamamBaseUrl,
           method: Method.post,
           params: <String, dynamic>{},
+          baseUrl: edamamBaseUrl,
+          headers: Constants.edamamPostHeader,
+          queryParams: Constants.edamamPostParams,
         );
         expect(response.data, responseSuccess);
       });
@@ -68,6 +68,9 @@ void main() {
             endpoint: Constants.wrongEndpoint,
             method: Method.post,
             params: <String, dynamic>{},
+            baseUrl: edamamBaseUrl,
+            headers: Constants.edamamPostHeader,
+            queryParams: Constants.edamamPostParams,
           ),
           throwsA(isA<DioError>()),
         );
