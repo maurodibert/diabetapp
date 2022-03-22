@@ -1,12 +1,7 @@
-// Copyright (c) 2021, Very Good Ventures
-// https://verygood.ventures
-//
-// Use of this source code is governed by an MIT-style
-// license that can be found in the LICENSE file or at
-// https://opensource.org/licenses/MIT.
-
 // Package imports:
 import 'package:diabetapp/home/home.dart';
+import 'package:diabetapp/theme/theme.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:ingredients_repository/ingredients_repository.dart';
@@ -31,13 +26,24 @@ void main() {
       ));
       expect(find.byType(AppView), findsOneWidget);
     });
+  });
 
+  group('AppView', () {
+    testWidgets('renders MaterialApp with correct themes', (tester) async {
+      await tester.pumpWidget(RepositoryProvider.value(
+        value: ingredientsRepository,
+        child: AppView(),
+      ));
+
+      final materialApp = tester.widget<MaterialApp>(find.byType(MaterialApp));
+      expect(materialApp.theme, equals(DiabetappTheme.light));
+      expect(materialApp.darkTheme, equals(DiabetappTheme.dark));
+    });
     testWidgets('renders HomePage', (tester) async {
       await tester.pumpWidget(RepositoryProvider.value(
         value: ingredientsRepository,
         child: AppView(),
       ));
-      expect(find.byType(AppView), findsOneWidget);
       expect(find.byType(HomePage), findsOneWidget);
     });
   });

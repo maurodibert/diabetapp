@@ -27,7 +27,7 @@ extension PumpApp on WidgetTester {
   }) {
     return pumpWidget(
       RepositoryProvider.value(
-        value: ingredientsRepository ?? MockIngredientsRepository(),
+        value: ingredientsRepository,
         child: MaterialApp(
           localizationsDelegates: const [
             AppLocalizations.delegate,

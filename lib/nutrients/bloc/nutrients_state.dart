@@ -14,10 +14,13 @@ enum UserShould {
   addFood,
 }
 
-class ResultedCalculation {
+class ResultedCalculation extends Equatable {
   const ResultedCalculation({required this.userShould, this.amount});
   final UserShould userShould;
   final double? amount;
+
+  @override
+  List<Object?> get props => [userShould, amount];
 }
 
 class NutrientsState extends Equatable {

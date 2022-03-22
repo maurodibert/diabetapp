@@ -1,3 +1,4 @@
+import 'package:diabetapp/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:diabetapp/nutrients/nutrients.dart';
 
@@ -15,10 +16,11 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'DiabetApp',
+          l10n!.appName,
           style: Theme.of(context)
               .textTheme
               .headline5!

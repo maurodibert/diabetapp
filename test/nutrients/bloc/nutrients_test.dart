@@ -13,6 +13,17 @@ void main() {
   final ingredientsRepository =
       IngredientsRepository(ingredientsApi: ingredientsApi);
   void mockedScrolling() {}
+  final initialLoadingNutrientsState = NutrientsState(
+    status: NutrientsStatus.loading,
+    ingredients: [],
+    recipeDetail: null,
+    insuline: 0,
+    sugar: 0,
+    error: null,
+    result: null,
+    objective: 110,
+    fsi: 50,
+  );
 
   NutrientsBloc buildBloc() =>
       NutrientsBloc(ingredientsRepository: ingredientsRepository);
@@ -131,40 +142,32 @@ void main() {
       },
       expect: () => <NutrientsState>[],
     );
+  });
 
-    // blocTest<NutrientsBloc, NutrientsState>(
-    //   'emits state with updated status and recipe '
-    //   'when repository getRecipeDetails emits new recipe',
-    //   build: () => buildBloc(),
-    //   act: (bloc) {
-    //     return bloc.add(NutrientsSubscriptionRequested());
-    //   },
-    //   expect: () => [
-    //     const NutrientsState(
-    //       status: NutrientsStatus.loading,
-    //     ),
-    //     NutrientsState(
-    //       status: NutrientsStatus.apiCalculationSuccess,
-    //       recipeDetail: recipe,
-    //     )
-    //   ],
-    // );
-
-    // blocTest<NutrientsBloc, NutrientsState>(
-    //   'emits state with failure status '
-    //   'when repository detailsStream stream emits error',
-    //   setUp: () {
-    //     when(
-    //       () => ingredientsRepository.getRecipeDetails(),
-    //     ).thenAnswer((_) => Stream.error(Exception('oops')));
-    //   },
-    //   build: buildBloc,
-    //   act: (bloc) => bloc.add(const NutrientsSubscriptionRequested()),
-    //   expect: () => [
-    //     const NutrientsState(status: NutrientsStatus.loading),
-    //     const NutrientsState(status: NutrientsStatus.failure),
-    //   ],
-    // );
+  group('onGetResult', () {
+    blocTest<NutrientsBloc, NutrientsState>(
+      'calculate result if ingredients is empty',
+      build: buildBloc,
+      seed: () => NutrientsState(),
+      setUp: () {
+        when(() => ingredientsApi.getRecipeDetails())
+            .thenAnswer((_) => Stream.empty());
+      },
+      act: (bloc) => bloc.add(NutrientsGetResultEvent(
+        scrollingBottom: mockedScrolling,
+        scrollingTop: mockedScrolling,
+      )),
+      expect: () => <NutrientsState>[
+        initialLoadingNutrientsState,
+        NutrientsState(
+          status: NutrientsStatus.calculationSuccess,
+          recipeDetail: RecipeDetail.empty(),
+          ingredients: <String>[],
+          result:
+              ResultedCalculation(amount: 110, userShould: UserShould.addFood),
+        )
+      ],
+    );
   });
 
   group('onSetIngredients', () {

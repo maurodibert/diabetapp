@@ -13,6 +13,10 @@ void main() {
   final dio = Dio();
   final httpService = HttpService(
     httpClient: dio,
+  );
+
+  final edamamApi = EdamamNutritionApi(
+    httpService: httpService,
     baseUrl: EnvironmentConfig.edamamBaseUrl,
     headers: <String, dynamic>{
       'Content-Type': 'application/json',
@@ -23,7 +27,5 @@ void main() {
       'app_key': EnvironmentConfig.edamamKey,
     },
   );
-
-  final edamamApi = EdamamNutritionApi(httpService: httpService);
   bootstrap(ingredientsApi: edamamApi);
 }

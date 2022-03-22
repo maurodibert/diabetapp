@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:diabetapp/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -29,15 +30,8 @@ class AppView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-          appBarTheme: const AppBarTheme(color: Colors.black87),
-          colorScheme: ColorScheme.fromSwatch(
-            primarySwatch: Colors.pink,
-          ),
-          buttonTheme: ButtonThemeData(
-            buttonColor: Colors.black87,
-            textTheme: ButtonTextTheme.normal,
-          )),
+      theme: DiabetappTheme.light,
+      darkTheme: DiabetappTheme.dark,
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         AppLocalizations.delegate,

@@ -1,4 +1,5 @@
 {
+    "appName": "Diabetapp",
     "nutrientsAdderCalculateButton": "Calculá",
     "nutrientsActiveInsulineText": "Insulina activa",
     "nutrientsCurrentSugarText": "Azúcar en sangre",
