@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:http_service/http_service.dart';
 import 'package:ingredients_api/ingredients_api.dart';
+
 import 'package:rxdart/rxdart.dart';
 
 /// {@template edamam_nutrition_api}

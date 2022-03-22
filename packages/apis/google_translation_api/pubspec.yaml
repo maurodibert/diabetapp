@@ -11,10 +11,10 @@ dependencies:
   flutter:
     sdk: flutter
   http_service:
-    path: ../http_service
+    path: ../../services/http_service
   rxdart: ^0.27.2
   translation_api:
-    path: ../translation_api
+    path: ../../interfaces/translation_api
 
 
 dev_dependencies:

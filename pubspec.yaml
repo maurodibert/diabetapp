@@ -10,7 +10,7 @@ dependencies:
   bloc: ^8.0.1
   dio: ^4.0.4
   edamam_nutrition_api:
-    path: packages/edamam_nutrition_api
+    path: packages/apis/edamam_nutrition_api
   equatable: ^2.0.3
   flutter:
     sdk: flutter
@@ -19,11 +19,11 @@ dependencies:
     sdk: flutter
   flutter_services_binding: ^0.1.0
   http_service:
-    path: packages/http_service
+    path: packages/services/http_service
   ingredients_api:
-    path: packages/ingredients_api
+    path: packages/interfaces/ingredients_api
   ingredients_repository:
-    path: packages/ingredients_repository
+    path: packages/repositories/ingredients_repository
   intl: ^0.17.0
 
 dev_dependencies:

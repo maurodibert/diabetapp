@@ -123,7 +123,7 @@ packages:
   edamam_nutrition_api:
     dependency: "direct main"
     description:
-      path: "packages/edamam_nutrition_api"
+      path: "packages/apis/edamam_nutrition_api"
       relative: true
     source: path
     version: "1.0.0+1"
@@ -208,7 +208,7 @@ packages:
   http_service:
     dependency: "direct main"
     description:
-      path: "packages/http_service"
+      path: "packages/services/http_service"
       relative: true
     source: path
     version: "1.0.0+1"
@@ -222,14 +222,14 @@ packages:
   ingredients_api:
     dependency: "direct main"
     description:
-      path: "packages/ingredients_api"
+      path: "packages/interfaces/ingredients_api"
       relative: true
     source: path
     version: "1.0.0+1"
   ingredients_repository:
     dependency: "direct main"
     description:
-      path: "packages/ingredients_repository"
+      path: "packages/repositories/ingredients_repository"
       relative: true
     source: path
     version: "1.0.0+1"

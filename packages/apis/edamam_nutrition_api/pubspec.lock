@@ -98,14 +98,14 @@ packages:
   http_service:
     dependency: "direct main"
     description:
-      path: "../http_service"
+      path: "../../services/http_service"
       relative: true
     source: path
     version: "1.0.0+1"
   ingredients_api:
     dependency: "direct main"
     description:
-      path: "../ingredients_api"
+      path: "../../interfaces/ingredients_api"
       relative: true
     source: path
     version: "1.0.0+1"

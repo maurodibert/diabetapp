@@ -11,9 +11,9 @@ dependencies:
   flutter:
     sdk: flutter
   http_service:
-    path: ../http_service
+    path: ../../services/http_service
   ingredients_api:
-    path: ../ingredients_api
+    path: ../../interfaces/ingredients_api
   rxdart: ^0.27.2
 
 
