@@ -3,6 +3,7 @@ import 'package:http_service/http_service.dart';
 import 'package:ingredients_api/ingredients_api.dart';
 
 import 'package:rxdart/rxdart.dart';
+import 'package:translator/translator.dart';
 
 /// {@template edamam_nutrition_api}
 /// A Flutter implementation of MealsApi that uses Edamam Nutrition Api
@@ -24,18 +25,35 @@ class EdamamNutritionApi extends IngredientsApi {
   final Map<String, dynamic> _headers;
   final Map<String, dynamic> _params;
   final _detailsStreamController = PublishSubject<RecipeDetail>();
+  final _translator = GoogleTranslator();
 
   /// will return a Stream of RecipeDetail
   @override
   Stream<RecipeDetail> getRecipeDetails() =>
       _detailsStreamController.asBroadcastStream();
 
+  /// will translate the list of ingredients from local language to english,
+  /// native language of edamam nutrition api
+  Future<List<String>> translateIngredients(List<String> ingredients) async {
+    final translatedIngredients = <String>[];
+    try {
+      for (final ingredient in ingredients) {
+        final translated = await _translator.translate(ingredient);
+        translatedIngredients.add(translated.text);
+      }
+      return translatedIngredients;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
   @override
   Future<void> requestIngredients(List<String> ingredients) async {
+    final translatedIngredients = await translateIngredients(ingredients);
     const endpoint = '/nutrition-details';
     final body = <String, dynamic>{
       'title': 'getDetails',
-      'ingr': <String>[...ingredients]
+      'ingr': [...translatedIngredients]
     };
 
     try {
@@ -82,8 +100,15 @@ class EdamamNutritionApi extends IngredientsApi {
             path: endpoint,
           ),
         );
+      } else if (e.response!.statusCode == 500) {
+        throw DioError(
+          error: '''Unknown error - Sorry! We don't know what went wrong''',
+          requestOptions: RequestOptions(
+            path: endpoint,
+          ),
+        );
       }
-      throw Exception("Something wen't wrong");
+      throw Exception('Something went wrong');
     }
   }
 }

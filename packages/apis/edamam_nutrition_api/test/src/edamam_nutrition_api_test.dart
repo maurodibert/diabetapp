@@ -71,6 +71,12 @@ void main() {
         expect(api.getRecipeDetails(), emits(recipe));
       });
 
+      test('translates correctly', () async {
+        final translation = await api
+            .translateIngredients(['1 manzana 2 bananas 1 jugo de naranja']);
+        expect(translation, equals(['1 apple 2 bananas 1 orange juice']));
+      });
+
       test('should return a -Low Quality- DioError', () {
         dioAdapter.onPost(
           Constants.endpoint,
