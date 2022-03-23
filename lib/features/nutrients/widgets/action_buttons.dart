@@ -1,4 +1,4 @@
-import 'package:diabetapp/nutrients/bloc/nutrients_bloc.dart';
+import 'package:diabetapp/features/nutrients/bloc/nutrients_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/src/provider.dart';
 
@@ -26,7 +26,6 @@ class ActionButtons extends StatelessWidget {
   Widget build(BuildContext context) {
     return Positioned(
       bottom: 0,
-      right: 0,
       child: Container(
         color: Colors.pink,
         width: width,

@@ -1,12 +1,12 @@
 // Package imports:
-import 'package:diabetapp/home/home.dart';
-import 'package:diabetapp/nutrients/nutrients.dart';
+import 'package:diabetapp/features/home/home.dart';
+import 'package:diabetapp/features/nutrients/nutrients.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:ingredients_repository/ingredients_repository.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../helpers/pump_app.dart';
+import '../../../helpers/pump_app.dart';
 
 // Project imports:
 

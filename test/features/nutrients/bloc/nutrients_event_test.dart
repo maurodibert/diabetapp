@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:diabetapp/nutrients/nutrients.dart';
+import 'package:diabetapp/features/nutrients/nutrients.dart';
 
 void main() {
   group('NutrientsEvent', () {

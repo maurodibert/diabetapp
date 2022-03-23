@@ -1,17 +1,17 @@
-import 'package:diabetapp/l10n/l10n.dart';
+import 'package:diabetapp/resources/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:diabetapp/nutrients/bloc/nutrients_bloc.dart';
+import 'package:diabetapp/features/nutrients/bloc/nutrients_bloc.dart';
 
-class ActiveInsuline extends StatelessWidget {
-  const ActiveInsuline({
+class CurrentSugar extends StatelessWidget {
+  const CurrentSugar({
     Key? key,
-    required this.insulineController,
+    required this.sugarController,
     required this.formKey,
     required this.bloc,
   }) : super(key: key);
 
-  final TextEditingController insulineController;
+  final TextEditingController sugarController;
   final GlobalKey<FormState> formKey;
   final NutrientsBloc bloc;
 
@@ -23,7 +23,7 @@ class ActiveInsuline extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(
-          l10n!.nutrientsActiveInsulineText,
+          l10n!.nutrientsCurrentSugarText,
           style: Theme.of(context).textTheme.headline6,
         ),
         const SizedBox(width: 24),
@@ -38,12 +38,11 @@ class ActiveInsuline extends StatelessWidget {
             validator: (value) {
               return validate(value);
             },
-            controller: insulineController,
+            controller: sugarController,
             onChanged: (value) {
               final _value = value.isEmpty ? '0' : value;
-              if (value.isEmpty) ;
-              bloc.add(
-                  NutrientsSetInsulineEvent(insuline: double.parse(_value)));
+
+              bloc.add(NutrientsSetSugarEvent(sugar: double.parse(_value)));
             },
           ),
         ),

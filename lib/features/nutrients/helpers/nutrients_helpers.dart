@@ -1,4 +1,4 @@
-import 'package:diabetapp/nutrients/bloc/nutrients_bloc.dart';
+import '../../../features/nutrients/bloc/nutrients_bloc.dart';
 
 abstract class NutrientsHelpers {
   static num sugarToBalance({

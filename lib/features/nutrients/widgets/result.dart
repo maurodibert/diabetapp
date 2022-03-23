@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:diabetapp/nutrients/bloc/nutrients_bloc.dart';
+import 'package:diabetapp/features/nutrients/bloc/nutrients_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Result extends StatelessWidget {

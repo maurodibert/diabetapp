@@ -2,7 +2,9 @@ import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 import 'package:ingredients_repository/ingredients_repository.dart';
-import 'package:diabetapp/nutrients/helpers/nutrients_helpers.dart';
+
+import '../../../features/nutrients/helpers/nutrients_helpers.dart';
+
 part 'nutrients_state.dart';
 part 'nutrients_event.dart';
 

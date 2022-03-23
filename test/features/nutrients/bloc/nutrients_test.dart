@@ -2,8 +2,8 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:ingredients_api/ingredients_api.dart';
 import 'package:ingredients_repository/ingredients_repository.dart';
-import 'package:diabetapp/nutrients/helpers/nutrients_helpers.dart';
-import 'package:diabetapp/nutrients/nutrients.dart';
+import 'package:diabetapp/features/nutrients/helpers/nutrients_helpers.dart';
+import 'package:diabetapp/features/nutrients/nutrients.dart';
 import 'package:mocktail/mocktail.dart';
 
 class MockIngredientsApi extends Mock implements IngredientsApi {}

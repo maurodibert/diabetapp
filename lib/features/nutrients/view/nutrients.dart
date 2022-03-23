@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ingredients_repository/ingredients_repository.dart';
-import 'package:diabetapp/nutrients/bloc/nutrients_bloc.dart';
+import 'package:diabetapp/features/nutrients/bloc/nutrients_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:diabetapp/nutrients/widgets/nutrients_adder.dart';
+import 'package:diabetapp/features/nutrients/widgets/nutrients_adder.dart';
 
 class NutrientsPage extends StatelessWidget {
   const NutrientsPage({Key? key}) : super(key: key);

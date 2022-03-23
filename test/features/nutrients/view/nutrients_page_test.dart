@@ -1,9 +1,9 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:ingredients_repository/ingredients_repository.dart';
-import 'package:diabetapp/nutrients/nutrients.dart';
+import 'package:diabetapp/features/nutrients/nutrients.dart';
 import 'package:mockingjay/mockingjay.dart';
 
-import '../../helpers/helpers.dart';
+import '../../../helpers/helpers.dart';
 
 class MockIngredientsRepository extends Mock implements IngredientsRepository {}
 

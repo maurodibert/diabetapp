@@ -1,15 +1,16 @@
 // Flutter imports:
-import 'package:diabetapp/theme/theme.dart';
+import 'package:diabetapp/resources/l10n/l10n.dart';
+import 'package:diabetapp/resources/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Package imports:
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:ingredients_repository/ingredients_repository.dart';
-import 'package:diabetapp/home/home.dart';
+
+import '../../features/home/view/home.dart';
 
 // Project imports:
-import 'package:diabetapp/l10n/l10n.dart';
 
 class App extends StatelessWidget {
   App({required this.ingredientsRepository, Key? key}) : super(key: key);
