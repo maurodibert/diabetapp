@@ -41,7 +41,6 @@ class CurrentSugar extends StatelessWidget {
             controller: sugarController,
             onChanged: (value) {
               final _value = value.isEmpty ? '0' : value;
-
               bloc.add(NutrientsSetSugarEvent(sugar: double.parse(_value)));
             },
           ),

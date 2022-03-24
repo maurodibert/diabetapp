@@ -1,5 +1,6 @@
 import 'package:diabetapp/features/nutrients/nutrients.dart';
 import 'package:diabetapp/features/nutrients/widgets/active_insuline.dart';
+import 'package:diabetapp/features/nutrients/widgets/current_sugar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -16,9 +17,9 @@ void main() {
     bloc = MockNutrientsBloc();
   });
 
-  ActiveInsuline createSubject() {
-    return ActiveInsuline(
-        insulineController: TextEditingController(),
+  CurrentSugar createSubject() {
+    return CurrentSugar(
+        sugarController: TextEditingController(),
         formKey: GlobalKey(),
         bloc: bloc);
   }
@@ -34,7 +35,7 @@ void main() {
       await tester.pumpApp(createSubject());
       expect(find.byType(TextFormField), findsOneWidget);
       expect(find.byType(Text), findsOneWidget);
-      expect(find.text(l10n.nutrientsActiveInsulineText), findsOneWidget);
+      expect(find.text(l10n.nutrientsCurrentSugarText), findsOneWidget);
     });
   });
 

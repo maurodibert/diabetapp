@@ -40,9 +40,9 @@ class ActiveInsuline extends StatelessWidget {
             },
             controller: insulineController,
             onChanged: (value) {
-              if (value.isEmpty) return;
+              final _value = value.isEmpty ? '0' : value;
               bloc.add(
-                  NutrientsSetInsulineEvent(insuline: double.parse(value)));
+                  NutrientsSetInsulineEvent(insuline: double.parse(_value)));
             },
           ),
         ),
