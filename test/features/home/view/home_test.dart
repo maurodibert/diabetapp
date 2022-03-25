@@ -9,6 +9,7 @@ import 'package:mocktail/mocktail.dart';
 import '../../../helpers/pump_app.dart';
 
 // Project imports:
+class MockIngredientsRepository extends Mock implements IngredientsRepository {}
 
 void main() {
   late IngredientsRepository ingredientsRepository;

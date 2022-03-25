@@ -8,9 +8,8 @@ import 'package:ingredients_repository/ingredients_repository.dart';
 import 'package:diabetapp/app/app.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../helpers/pump_app.dart';
-
 // Project imports:
+class MockIngredientsRepository extends Mock implements IngredientsRepository {}
 
 void main() {
   late IngredientsRepository ingredientsRepository;
