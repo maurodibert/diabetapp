@@ -1,3 +1,4 @@
+import 'package:diabetapp/resources/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:diabetapp/features/nutrients/bloc/nutrients_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -37,15 +38,23 @@ class ResultView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final l10n = context.l10n;
+    final amount = context
+            .watch<NutrientsBloc>()
+            .state
+            .result
+            ?.amount
+            ?.toStringAsFixed(1) ??
+        0;
 
     return BlocBuilder<NutrientsBloc, NutrientsState>(
       builder: (context, state) {
         bool hasRecipe = state.recipeDetail!.totalNutrients != null;
         final result = state.result!.userShould == UserShould.doNothing
-            ? 'You are in great shape!'
+            ? l10n!.nutrientsResultGreatShape
             : state.result!.userShould == UserShould.addFood
-                ? 'You have to eat ${context.watch<NutrientsBloc>().state.result!.amount!.toStringAsFixed(1)} grams of carbs'
-                : 'You have to add ${context.watch<NutrientsBloc>().state.result!.amount!.toStringAsFixed(1)} of insuline';
+                ? l10n!.nutrientsResultHaveToEat(amount.toString())
+                : l10n!.nutrientsResultHaveToAdd(amount.toString());
 
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 12.0),

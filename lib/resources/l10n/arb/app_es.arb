@@ -3,5 +3,26 @@
     "nutrientsAdderCalculateButton": "Calculá",
     "nutrientsActiveInsulineText": "Insulina activa",
     "nutrientsCurrentSugarText": "Azúcar en sangre",
-    "nutrientsYourMealText": "Tu comida"
+    "nutrientsYourMealText": "Tu comida",
+    "nutrientsResultGreatShape": "Estás en muy buena forma!",
+    "nutrientsResultHaveToEat": "Tenés que comer {amount} gramos de carbohidratos",
+    "@nutrientsResultHaveToEat": {
+        "description": "Cuando el usuario tiene que comer",
+        "placeholders": {
+            "amount": {
+                "type": "String",
+                "example": "0.3"
+            }
+        }
+    },
+    "nutrientsResultHaveToAdd": "Tenés que agregar {amount} unidades de insulina",
+    "@nutrientsResultHaveToAdd": {
+        "description": "Cuando el usuario tiene que agregar insulina",
+        "placeholders": {
+            "amount": {
+                "type": "String",
+                "example": "0.3"
+            }
+        }
+    }
 }

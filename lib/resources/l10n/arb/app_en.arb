@@ -18,5 +18,29 @@
     "nutrientsYourMealText": "Your Meal",
     "@nutrientsYourMealText": {
         "description": "Title for the your meal text field"
+    },
+    "nutrientsResultGreatShape": "You are in great shape!",
+    "@nutrientsResultGreatShape": {
+        "description": "Text for result when user has to do anything"
+    },
+    "nutrientsResultHaveToEat": "You have to eat {amount} grams of carbs",
+    "@nutrientsResultHaveToEat": {
+        "description": "Text when user has to eat",
+        "placeholders": {
+            "amount": {
+                "type": "String",
+                "example": "0.3"
+            }
+        }
+    },
+    "nutrientsResultHaveToAdd": "You have to add {amount} of insuline",
+    "@nutrientsResultHaveToAdd": {
+        "description": "Text when user has to add insuline",
+        "placeholders": {
+            "amount": {
+                "type": "String",
+                "example": "0.3"
+            }
+        }
     }
 }
