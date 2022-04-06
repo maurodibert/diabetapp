@@ -42,5 +42,15 @@
                 "example": "0.3"
             }
         }
+    },
+    "nutrientsRecipeDescription": "Your meal has {quantity} grams of sugar | ",
+    "@nutrientsRecipeDescription": {
+        "description": "Amount of sugar the recipe has",
+        "placeholders": {
+            "quantity": {
+                "type": "String",
+                "example": "110"
+            }
+        }
     }
 }

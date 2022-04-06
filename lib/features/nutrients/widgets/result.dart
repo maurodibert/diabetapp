@@ -55,6 +55,16 @@ class ResultView extends StatelessWidget {
             : state.result!.userShould == UserShould.addFood
                 ? l10n!.nutrientsResultHaveToEat(amount.toString())
                 : l10n!.nutrientsResultHaveToAdd(amount.toString());
+        final carbsAmount = hasRecipe
+            ? l10n.nutrientsRecipeDescription(context
+                .watch<NutrientsBloc>()
+                .state
+                .recipeDetail!
+                .totalNutrients!
+                .nutrient
+                .quantity
+                .toStringAsFixed(1))
+            : '';
 
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 12.0),
@@ -62,9 +72,7 @@ class ResultView extends StatelessWidget {
             child: RichText(
                 textAlign: TextAlign.center,
                 text: TextSpan(
-                    text: hasRecipe
-                        ? 'Your meal has ${context.watch<NutrientsBloc>().state.recipeDetail!.totalNutrients!.nutrient.quantity.toStringAsFixed(1)} grams of sugar | '
-                        : '',
+                    text: carbsAmount,
                     style: textTheme.headline5,
                     children: <TextSpan>[
                       TextSpan(

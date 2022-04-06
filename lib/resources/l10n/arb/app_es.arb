@@ -24,5 +24,15 @@
                 "example": "0.3"
             }
         }
+    },
+    "nutrientsRecipeDescription": "Tu comida tiene {quantity} gramos de azúcar",
+    "@nutrientsRecipeDescription": {
+        "description": "Cantidad de azúcar de la receta",
+        "placeholders": {
+            "quantity": {
+                "type": "String",
+                "example": "110"
+            }
+        }
     }
 }
