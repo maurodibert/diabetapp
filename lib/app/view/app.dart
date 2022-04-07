@@ -1,6 +1,5 @@
 // Flutter imports:
-import 'package:diabetapp/resources/l10n/l10n.dart';
-import 'package:diabetapp/resources/theme/theme.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -9,6 +8,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:ingredients_repository/ingredients_repository.dart';
 
 import '../../features/home/view/home.dart';
+import '../l10n/l10n.dart';
+import '../theme/theme.dart';
 
 // Project imports:
 

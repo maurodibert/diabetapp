@@ -1,4 +1,4 @@
-import 'package:diabetapp/resources/l10n/l10n.dart';
+import 'package:diabetapp/app/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:diabetapp/features/nutrients/bloc/nutrients_bloc.dart';
 import 'package:provider/src/provider.dart';

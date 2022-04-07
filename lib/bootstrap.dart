@@ -12,6 +12,18 @@ import 'package:diabetapp/app/view/app.dart';
 
 class AppBlocObserver extends BlocObserver {
   @override
+  void onEvent(Bloc bloc, Object? event) {
+    super.onEvent(bloc, event);
+    print(event);
+  }
+
+  @override
+  void onTransition(Bloc bloc, Transition transition) {
+    super.onTransition(bloc, transition);
+    print(transition);
+  }
+
+  @override
   void onChange(BlocBase bloc, Change change) {
     super.onChange(bloc, change);
     log('onChange(${bloc.runtimeType}, $change)');
