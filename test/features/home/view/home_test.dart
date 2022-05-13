@@ -6,7 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:ingredients_repository/ingredients_repository.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../../helpers/pump_app.dart';
+import '../../../tests_helpers/pump_app.dart';
 
 // Project imports:
 class MockIngredientsRepository extends Mock implements IngredientsRepository {}

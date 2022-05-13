@@ -6,8 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../../helpers/helpers.dart';
-import '../../../helpers/l10n.dart';
+import '../../../tests_helpers/helpers.dart';
+import '../../../tests_helpers/l10n.dart';
 
 class MockNutrientsBloc extends MockBloc<NutrientsEvent, NutrientsState>
     implements NutrientsBloc {}

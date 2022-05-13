@@ -8,7 +8,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:ingredients_repository/ingredients_repository.dart';
 
 // Project imports:
-import 'package:diabetapp/resources/l10n/l10n.dart';
+import 'package:diabetapp/app/l10n/l10n.dart';
 
 extension PumpApp on WidgetTester {
   Future<void> pumpApp(

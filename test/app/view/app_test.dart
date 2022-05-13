@@ -1,6 +1,6 @@
 // Package imports:
 import 'package:diabetapp/features/home/home.dart';
-import 'package:diabetapp/resources/theme/theme.dart';
+import 'package:diabetapp/app/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
